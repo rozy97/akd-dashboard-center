@@ -31,7 +31,7 @@ export default function LoginPage() {
     return (
         <div className={`${jetBrainsMono.variable} antialiased min-h-screen flex flex-col lg:flex-row`}>
             {/* Left Column */}
-            <div className="bg-[#ebe4e4] p-8 flex flex-col h-[40vh] lg:h-auto lg:w-1/2">
+            <div className="bg-[#ebe4e4] p-5 xl:p-8 flex flex-col h-[35vh] lg:h-auto lg:w-1/2 mb-5 xl:mb-0">
                 <div className="flex items-center gap-2">
                     <Image
                         src="/mountain.png"
@@ -40,7 +40,7 @@ export default function LoginPage() {
                         height={32}
                         className="object-contain"
                     />
-                    <span className="font-bold text-xl">AKD</span>
+                    <span className="font-bold text-xl hidden">AKD</span>
                 </div>
 
                 <div className="flex-1 flex items-center justify-center">
@@ -57,7 +57,7 @@ export default function LoginPage() {
             {/* Right Column */}
             <div className="p-8 flex flex-col justify-center h-[60vh] lg:h-auto lg:w-1/2">
                 <div className="bg-accent rounded-xl p-10 py-20 w-full max-w-md mx-auto space-y-6 lg:space-y-8">
-                    <h1 className="text-2xl font-semibold text-center tracking-wider">
+                    <h1 className="text-xl xl:text-2xl font-semibold text-center tracking-wider">
                         DASHBOARD CENTER
                     </h1>
 
@@ -95,7 +95,7 @@ export default function LoginPage() {
 
             {/* Copyright */}
             <div className="xl:bg-[#ebe4e4] p-4 text-center text-sm text-gray-600 lg:absolute lg:bottom-0 lg:left-0 lg:w-1/2">
-                Copyright <span className="font-bold">©</span> 2024 PT. Adisarana Karya Delta
+                {new Date().getFullYear()} <span className="font-bold">©</span> PT. Adisarana Karya Delta
             </div>
         </div>
     )
