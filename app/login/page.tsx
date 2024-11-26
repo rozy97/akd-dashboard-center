@@ -95,7 +95,7 @@ export default function LoginPage() {
 
             {/* Copyright */}
             <div className="xl:bg-[#ebe4e4] p-4 text-center text-sm text-gray-600 lg:absolute lg:bottom-0 lg:left-0 lg:w-1/2">
-                Copyright © 2024 PT. Adisarana Karya Delta
+                Copyright <span className="font-bold">©</span> 2024 PT. Adisarana Karya Delta
             </div>
         </div>
     )
