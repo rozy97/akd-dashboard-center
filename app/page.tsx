@@ -1,144 +1,44 @@
-"use client"
+import AcmeLogo from '@/app/ui/acme-logo';
+import { ArrowRightIcon } from '@heroicons/react/24/outline';
+import Link from 'next/link';
+import Image from 'next/image';
 
-import { Line, LineChart, XAxis, YAxis, CartesianGrid, Tooltip, Legend, BarChart, Bar, PieChart, Pie, Cell, ResponsiveContainer } from "recharts"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { CollapsibleSidebar } from "@/components/dashboard-collapse"
-
-const productionData = [
-  { month: "Jan", oreMining: 12, obRemoval: 15, quarry: 17 },
-  { month: "Feb", oreMining: 15, obRemoval: 13, quarry: 22 },
-  { month: "Mar", oreMining: 20, obRemoval: 12, quarry: 18 },
-  { month: "Apr", oreMining: 15, obRemoval: 18, quarry: 12 },
-  { month: "Mai", oreMining: 14, obRemoval: 22, quarry: 15 },
-  { month: "Jun", oreMining: 18, obRemoval: 12, quarry: 20 },
-]
-
-const latestProduction = [
-  { name: "Ore Mining", value: 80 },
-  { name: "OB Removal", value: 82 },
-  { name: "Quarry", value: 60 },
-]
-
-const fuelConsumption = [
-  { name: "Excavator", value: 24.23 },
-  { name: "Dump Truck", value: 40.79 },
-  { name: "Breaker", value: 11.11 },
-  { name: "Bulldozer", value: 16.5 },
-  { name: "Light Vehicle", value: 6.37 },
-]
-
-const COLORS = ["#818cf8", "#e879f9", "#f472b6", "#4ade80", "#fbbf24"]
-
-export default function Dashboard() {
+export default function Page() {
   return (
-    <div className="flex flex-col lg:flex-row min-h-screen bg-background">
-      <CollapsibleSidebar>
-        <nav className="space-y-6">
-          <div>
-            <h3 className="mb-2 text-sm font-medium">Production</h3>
-            <div className="space-y-1">
-              <button className="w-full rounded-lg px-3 py-2 text-left text-sm hover:bg-muted">Ore Mining</button>
-              <button className="w-full rounded-lg px-3 py-2 text-left text-sm hover:bg-muted">OB Removal</button>
-              <button className="w-full rounded-lg px-3 py-2 text-left text-sm hover:bg-muted">Barging</button>
-              <button className="w-full rounded-lg px-3 py-2 text-left text-sm hover:bg-muted">Quarry</button>
-            </div>
-          </div>
-          <div>
-            <h3 className="mb-2 text-sm font-medium">Vehicles</h3>
-            <div className="space-y-1">
-              <button className="w-full rounded-lg px-3 py-2 text-left text-sm hover:bg-muted">Excavator</button>
-              <button className="w-full rounded-lg px-3 py-2 text-left text-sm hover:bg-muted">Dump Truck</button>
-              <button className="w-full rounded-lg px-3 py-2 text-left text-sm hover:bg-muted">Breaker</button>
-              <button className="w-full rounded-lg px-3 py-2 text-left text-sm hover:bg-muted">Light Vehicle</button>
-              <button className="w-full rounded-lg px-3 py-2 text-left text-sm hover:bg-muted">Bulldozer</button>
-            </div>
-          </div>
-        </nav>
-      </CollapsibleSidebar>
-
-      <main className="flex-1 p-4 lg:p-8 overflow-auto" role="main">
-        <div className="mb-8">
-          <h1 className="text-2xl font-bold">Production Graphic</h1>
+    <main className="flex min-h-screen flex-col p-6">
+      <div className="flex h-20 shrink-0 items-end rounded-lg bg-blue-500 p-4 md:h-52">
+        <AcmeLogo />
+      </div>
+      <div className="mt-4 flex grow flex-col gap-4 md:flex-row">
+        <div className="flex flex-col justify-center gap-6 rounded-lg bg-gray-50 px-6 py-10 md:w-2/5 md:px-20">
+          <p className={`text-xl text-gray-800 md:text-3xl md:leading-normal`}>
+            <strong>Welcome to Mining Dashboard.</strong>
+          </p>
+          <Link
+            href="/login"
+            className="flex items-center gap-5 self-start rounded-lg bg-blue-500 px-6 py-3 text-sm font-medium text-white transition-colors hover:bg-blue-400 md:text-base"
+          >
+            <span>Log in</span> <ArrowRightIcon className="w-5 md:w-6" />
+          </Link>
         </div>
-
-        <div className="grid gap-6">
-          <Card>
-            <CardHeader>
-              <CardTitle id="production-trends">Production Trends</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="h-[300px] w-full">
-                <ResponsiveContainer width="100%" height="100%">
-                  <LineChart data={productionData}>
-                    <CartesianGrid strokeDasharray="3 3" />
-                    <XAxis dataKey="month" />
-                    <YAxis />
-                    <Tooltip />
-                    <Legend />
-                    <Line type="monotone" dataKey="oreMining" stroke="#8884d8" />
-                    <Line type="monotone" dataKey="obRemoval" stroke="#82ca9d" />
-                    <Line type="monotone" dataKey="quarry" stroke="#ffc658" />
-                  </LineChart>
-                </ResponsiveContainer>
-              </div>
-            </CardContent>
-          </Card>
-
-          <div className="grid gap-6 md:grid-cols-2">
-            <Card>
-              <CardHeader>
-                <CardTitle id="latest-production">Latest Production Report</CardTitle>
-                <p className="text-sm text-muted-foreground">27 November 2024</p>
-                <p className="text-xs text-muted-foreground">Shift II (18:00 - 06:00 WITA)</p>
-              </CardHeader>
-              <CardContent>
-                <div className="h-[300px] w-full">
-                  <ResponsiveContainer width="100%" height="100%">
-                    <BarChart data={latestProduction}>
-                      <CartesianGrid strokeDasharray="3 3" />
-                      <XAxis dataKey="name" />
-                      <YAxis />
-                      <Tooltip />
-                      <Bar dataKey="value" fill="#8884d8" />
-                    </BarChart>
-                  </ResponsiveContainer>
-                </div>
-              </CardContent>
-            </Card>
-
-            <Card>
-              <CardHeader>
-                <CardTitle id="fuel-consumption">Latest Fuel Consumption Report</CardTitle>
-                <p className="text-sm text-muted-foreground">28 November 2024</p>
-              </CardHeader>
-              <CardContent>
-                <div className="h-[300px] w-full">
-                  <ResponsiveContainer width="100%" height="100%">
-                    <PieChart>
-                      <Pie
-                        data={fuelConsumption}
-                        cx="50%"
-                        cy="50%"
-                        labelLine={false}
-                        label={({ name, value }) => `${name} (${value}L)`}
-                        outerRadius={80}
-                        fill="#8884d8"
-                        dataKey="value"
-                      >
-                        {fuelConsumption.map((entry, index) => (
-                          <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-                        ))}
-                      </Pie>
-                      <Tooltip />
-                    </PieChart>
-                  </ResponsiveContainer>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
+        <div className="flex items-center justify-center p-6 md:w-3/5 md:px-28 md:py-12">
+          {/* Add Hero Images Here */}
+          <Image
+            src="/hero-desktop.png"
+            width={1000}
+            height={760}
+            className="hidden md:block"
+            alt="Screenshots of the dashboard project showing desktop version"
+          />
+          <Image
+            src="/hero-mobile.png"
+            width={560}
+            height={620}
+            className="block md:hidden"
+            alt="Screenshot of the dashboard project showing mobile version"
+          />
         </div>
-      </main>
-    </div>
-  )
+      </div>
+    </main>
+  );
 }
-

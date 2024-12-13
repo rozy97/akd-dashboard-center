@@ -4,7 +4,7 @@ FROM node:18-alpine AS base
 FROM base AS deps
 # Check https://github.com/nodejs/docker-node/tree/b4117f9333da4138b03a546ec926ef50a31506c3#nodealpine to understand why libc6-compat might be needed.
 # RUN apk add --no-cache libc6-compat
-RUN apk add --no-cache g++ make py3-pip libc6-compat
+RUN apk add --no-cache g++ make py3-pip libc6-compat tzdata
 
 WORKDIR /app
 
@@ -26,7 +26,7 @@ WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 # This will do the trick, use the corresponding env file for each environment.
-COPY .env.production.sample .env.production
+COPY .env .env.production
 RUN npm run build
 
 # 3. Production image, copy all the files and run next
