@@ -42,8 +42,8 @@ export default function Form({
     const formData = new FormData(event.currentTarget);
     const equipment_id = formData.get("equipmentId")?.toString() || "";
     const operator_id = formData.get("operatorId")?.toString() || null;
-    const amount = parseInt(formData.get("amount")?.toString() || "0");
-    const hm_or_km = parseInt(formData.get("hm_or_km")?.toString() || "0");
+    const amount = parseFloat(formData.get("amount")?.toString() || "0");
+    const hm_or_km = parseFloat(formData.get("hm_or_km")?.toString() || "0");
     const hm_or_km_unit = formData.get("hm_or_km_unit")?.toString() || null;
 
 
